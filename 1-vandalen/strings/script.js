@@ -16,9 +16,11 @@ window.onload = function(){
 				
 				if(str[i] == str[i].toUpperCase() ){
 					newStr += str[i].replace("A", "#").toLowerCase();
-				}else{
+				}
+				else{
 					newStr += str[i].replace("a", "#").toUpperCase();
 				}
+				
 			}
 			return [newStr];
 		}
