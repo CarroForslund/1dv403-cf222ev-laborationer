@@ -4,16 +4,15 @@ window.onload = function(){
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var convertString = function(str){
-		// Plats för förändring.		
-		// Returnera den konverterade strängen.
-		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-		
+		//Om inmatat värde är en sträng
+		//loopar vi genom varje tecken och byter ut a/A mot #
+		//och gör gemener till versaler och vice versa
+		//samt därefter skriver ut den modifierade/nya strängen.
+		//Om inmatat värde inte är en sträng skrivs ett felmeddelande ut
 		if (isNaN(str)){
-			//var replaced = "";
 			var newStr = "";
 			
 			for (var i = 0; i < str.length; i++){
-				//replaced +=  str[i].replace("a", "#").replace("A", "#");
 				
 				if(str[i] == str[i].toUpperCase() ){
 					newStr += str[i].replace("A", "#").toLowerCase();
@@ -26,29 +25,6 @@ window.onload = function(){
 		else {
 			return ["Du måste skriva in något att omvandla och du kan inte skriva enbart siffror."];
 		}
-
-				/*if (str.charCodeat(i) >= 65 && str.charCodeat(i) =< 90 || str.charCodeat(i) = 197 || str.charCodeat(i) = 196 || str.charCodeat[i] = 214){
-					var newStr = str.charCodeat[i].replace(/A/g, "#").toLowerCase;
-				}
-				else{
-					str.charCodeat[i].replace("a", "#").toUpperCase;
-				}*/
-				
-				
-				/*for (var i = 0; i < str.length; i+=1){
-				
-				var char = str[i];
-				
-				if (char === "a" || char === "A"){
-					var a = char;
-					char.replace(a, "#");
-				}
-			}
-			console.log(char);*/
-			
-			//return [char];
-
-
 	};
 	// ------------------------------------------------------------------------------
 
