@@ -9,16 +9,16 @@ window.onload = function(){
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 		
 		if (isNaN(str)){
-			var replaced = "";
+			//var replaced = "";
 			var newStr = "";
 			
 			for (var i = 0; i < str.length; i++){
-				replaced +=  str[i].replace("a", "#").replace("A", "#");
+				//replaced +=  str[i].replace("a", "#").replace("A", "#");
 				
 				if(str[i] == str[i].toUpperCase() ){
-					newStr += replaced[i].toLowerCase();
+					newStr += str[i].replace("A", "#").toLowerCase();
 				}else{
-					newStr += replaced[i].toUpperCase();
+					newStr += str[i].replace("a", "#").toUpperCase();
 				}
 			}
 			return [newStr];
