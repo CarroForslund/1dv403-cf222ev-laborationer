@@ -2,16 +2,26 @@
 
 window.onload = function(){
 
-	
 	var birthday = function(date){
+
+		var bday, today, daysToNextBday;
 		
-
-
-			// Din kod här.
-
-
-
-
+		if (!isNaN(new Date(date).getTime())){
+			bday = new Date(date);
+		today = new Date();
+		
+		bday.setFullYear(today.getFullYear());
+		today.setDate(today.getDate() -1);
+			if (today > bday) {
+	  			bday.setFullYear(today.getFullYear() + 1);
+			}
+			daysToNextBday = Math.floor((bday - today) / (1000*60*60*24))
+				
+			return daysToNextBday;
+		}
+		else {
+			throw new Error ("Var vänlig ange födelsedatumet i formatet ÅÅÅÅ-MM-DD.");
+		}
 	};
 	// ------------------------------------------------------------------------------
 
