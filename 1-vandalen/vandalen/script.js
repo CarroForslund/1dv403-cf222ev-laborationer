@@ -4,6 +4,15 @@ var makePerson = function(persArr){
 
     var persons;
     
+    for (var i = 0; i < persArr.length; i+=1){
+        if (typeof(persArr[i].name) !== "string"){
+            console.log("OBS! Namnet måste bestå av bokstäver.");
+        }
+        if (Number.isInteger(persArr[i].age)){
+            console.log("OBS! Åldern måste bestå av siffror.");
+        }
+    }
+    
     persons = {
         minAge: function (){
             return Math.min.apply(Math,persArr.map(function(persArr){return persArr.age}));
@@ -24,6 +33,6 @@ var makePerson = function(persArr){
 };
 
 
-// var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
-// var result = makePerson(data);
-// console.log(result);
+var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
+var result = makePerson(data);
+console.log(result);
