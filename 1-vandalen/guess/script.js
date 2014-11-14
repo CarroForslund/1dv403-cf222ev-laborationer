@@ -12,7 +12,7 @@ window.onload = function(){
 	
 	count+=1;
 			
-		// Plats för förändring.
+		//Skriv ut möjliga scenarion när spelaren gissat på ett tal
 		if (number == secret){
 			return [true, "Grattis du vann! Det hemliga talet var " + secret + " och du behövde " + count + " gissningar för att hitta det."];
 		}
@@ -25,16 +25,9 @@ window.onload = function(){
 		else{
 			return [false, "Talet är utanför intervallet 1 - 100"];
 		}
-
-		// Returnera exempelvis: 
-		// [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."]
-		// [false, "Det hemliga talet är högre!"]
-		// [false, "Det hemliga talet är lägre!"]
-		// [false, "Talet är utanför intervallet 0 - 100"]		
 	};
 	
 	// ------------------------------------------------------------------------------
-
 
 
 	// Kod för att hantera utskrift och inmatning. Denna ska du inte behöva förändra

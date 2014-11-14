@@ -6,12 +6,29 @@ window.onload = function(){
 
 		var bday, today, daysToNextBday;
 		
-		if (!isNaN(new Date(date).getTime())){
+		//Checka om inmatat datum är i rätt format, annars kasta felmeddelande
+		//Skapa ett nytt datumobjekt med inmatat födelsedatum
+		//Skapa ett nytt datumobjekt med dagens datum
+		if (!isNaN(new Date(date).getTime())){  //parse???
 			bday = new Date(date);
-		today = new Date();
+			today = new Date();
+			
+			// if(birthday.getMonth() == currentDate.getMonth() && birthday.getDate() == currentDate.getDate()){
+			// 	return 0;
+			// }
+			// if(birthday.getMonth() == currentDate.getMonth() && birthday.getDate() == (currentDate.getDate() - 1) ){
+			// 	return 1;
+			// }
+			// if(birthday.getMonth() <= currentDate.getMonth() || ( birthday.getMonth() == currentDate.getMonth() && birthday.getDate() < currentDate.getDate() ) ){
+			// 	birthday.setFullYear(currentDate.getFullYear() + 1);
+			// }
+			// var numberOfDays = Math.ceil((birthday.getTime() - currentDate.getTime()) / (1000*60*60*24));
 		
-		bday.setFullYear(today.getFullYear());
-		today.setDate(today.getDate() -1);
+			//Stäm av om användaren redan har fyllt år i år
+			//Om det är så, gå fram till nästa år
+			//Gör om millisekunder och räkna ut och skriv ut antalet dagar som är kvar
+			bday.setFullYear(today.getFullYear());
+			today.setDate(today.getDate() -1);
 			if (today > bday) {
 	  			bday.setFullYear(today.getFullYear() + 1);
 			}
@@ -56,7 +73,4 @@ window.onload = function(){
 		}
 	
 	});
-
-
-
 };

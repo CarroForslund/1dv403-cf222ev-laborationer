@@ -1,14 +1,14 @@
 "use strict";
 
 window.onload = function(){
-
-	// I denna funktion ska du skriva koden för att hantera "spelet"
+	
+	//Om inmatat värde är en sträng
+	//loopar vi genom varje tecken och byter ut a/A mot #
+	//och gör gemener till versaler och vice versa
+	//samt därefter skriver ut den modifierade/nya strängen.
+	//Om inmatat värde inte är en sträng skrivs ett felmeddelande ut
 	var convertString = function(str){
-		//Om inmatat värde är en sträng
-		//loopar vi genom varje tecken och byter ut a/A mot #
-		//och gör gemener till versaler och vice versa
-		//samt därefter skriver ut den modifierade/nya strängen.
-		//Om inmatat värde inte är en sträng skrivs ett felmeddelande ut
+		
 		if (isNaN(str)){
 			var newStr = "";
 			
@@ -22,10 +22,10 @@ window.onload = function(){
 				}
 				
 			}
-			return [newStr];
+			return newStr;
 		}
 		else {
-			return ["Du måste skriva in något att omvandla och du kan inte skriva enbart siffror."];
+			return "Du måste skriva in något att omvandla och du kan inte skriva enbart siffror.";
 		}
 	};
 	// ------------------------------------------------------------------------------
