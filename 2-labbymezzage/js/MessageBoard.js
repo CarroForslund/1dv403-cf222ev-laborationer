@@ -1,21 +1,47 @@
 "use strict";
-var MessageBoard = {
+window.onload = function(){
+    var MessageBoard = {
     
+        messages: [],
+        
+        init: function(value){
     
-     
-    init:function(e){
+            var mess = new Message(value, new Date());
+            MessageBoard.messages.push(mess);
+        },
+        
+        renderMessages: function(){
+            //Radera alla meddelanden
+            document.getElementById("messagearea1").innerHTML = "";
+            
+            //Rendera alla meddelanden
+            for (var i = 0; i < MessageBoard.messages.length; i += 1){
+                MessageBoard.renderMessages(i);
+            }
+        },
+        
+        renderMessage: function(messageId){
+            //Meddelande
+            var text = document.createElement("p");
+            text.innerHTML = MessageBoard.messages[messageId -1].getHTMLText();
+            
+            var div = document.createElement("div");
+            div.appendChild(text);
+            document.getElementById("messagearea1").appendChild(div);
+            
+        }
+    };
+    
+    // Kod för att hantera utskrift och inmatning
+    var input = document.querySelector("#text");
+    var submit = document.querySelector("#send1");
+    
+    // Vi kopplar en eventhanterare till formulärets skickaknapp som kör en anonym funktion.
+    submit.addEventListener("click", function(e){
+    	e.preventDefault(); // Hindra formuläret från att skickas till servern. Vi hanterar allt på klienten.
+    	MessageBoard.init(input.value);
+    	MessageBoard.renderMessage(MessageBoard.messages.length);
+    	console.log(MessageBoard.messages);
+    });
 
-        var messages = ["mess0", "mess1", "mess2"];
-        messages.push("mess3");
-        
-        var mess = new Message("Testmeddelande", new Date());
-        alert(mess); //använder toString för utskrift
-        alert(mess.getText()); //Skriver enbart ut texten
-        mess.setText("En annan text");
-        alert(mess); //Skriver ut meddelandet med ändrad text
-        
-    }
 };
-
-//console.log(MessageBoard.messages[2].getText());
-//window.onload = MessageBoard.init;
