@@ -23,12 +23,19 @@ window.onload = function(){
         renderMessage: function(messageId){
             //Meddelande
             var text = document.createElement("p");
-            text.innerHTML = MessageBoard.messages[messageId -1].getHTMLText();
-            
             var div = document.createElement("div");
-            div.appendChild(text);
-            document.getElementById("messagearea1").appendChild(div);
+            var messArea = document.getElementById("messagearea1");
+            var count = document.getElementById("count1");
             
+            count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length
+            text.innerHTML = MessageBoard.messages[messageId -1].getHTMLText();
+            messArea.appendChild(div);
+            div.appendChild(text);
+            
+            imgClose.alt="Close";
+            imgClose.onclick = function(){
+                MessageBoard.removeMessage(messageId);
+            };
         }
     };
     
@@ -42,6 +49,7 @@ window.onload = function(){
     	MessageBoard.init(input.value);
     	MessageBoard.renderMessage(MessageBoard.messages.length);
     	console.log(MessageBoard.messages);
+    	input.value = "";
     });
 
 };
