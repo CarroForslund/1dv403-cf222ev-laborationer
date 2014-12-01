@@ -19,7 +19,16 @@ function Message(message, date){
 }
 
 Message.prototype.toString = function(){
-    return this.getText()+" ("+this.getDate()+")";
+    var date, day, month, year;
+    month = ["januari", "februari", "mars", "april", "maj", "juni",
+    "juli", "augusti", "september", "oktober", "november", "december"];
+    
+    date = this.getDate();
+    day = date.getDate();
+    month = month[date.getMonth()];
+    year = date.getFullYear();
+    
+    return "Detta meddelande publicerades " +day+ " " +month+ " " +year+ " klockan " +this.getDateText();
 };
 
 Message.prototype.getHTMLText = function(){
@@ -27,7 +36,20 @@ Message.prototype.getHTMLText = function(){
 };
 
 Message.prototype.getDateText = function(){
-        //getHour():
-        //getMinute();
-        //getSecond();
+    var date = this.getDate();
+    var hours, minutes, seconds, time;
+    
+    hours = Message.twoDigits(date.getHours());
+    minutes = Message.twoDigits(date.getMinutes());
+    seconds = Message.twoDigits(date.getSeconds());
+    time = hours + ":" + minutes + ":" + seconds;
+    
+    return time.toString();
+};
+
+Message.twoDigits = function(digit){
+    if(digit < 10){
+        digit = "0" + digit;
+    }
+    return digit;
 }
