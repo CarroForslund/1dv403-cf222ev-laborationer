@@ -1,22 +1,22 @@
 "use strict";
 //Statiskt objekt
 var Memory = {
+    
     firstClick : null,
     secondClick : null,
-    
-    "randomNumbers": [],
-    
-    "init": function(){
+    randomNumbers: [],
+
+    init: function(){
         var rows = 4;
         var cols = 4;
         
-        //this hänvisar här till Memory
-        this.randomNumbers.push(RandomGenerator.getPictureArray(rows, cols));
-        this.generateTable(rows, cols, this.randomNumbers);
+        //Memory kan bytas ut mot this
+        Memory.randomNumbers.push(RandomGenerator.getPictureArray(rows, cols));
+        Memory.generateTable(rows, cols, Memory.randomNumbers);
         //alert("Testar att skriva ut arrayen randomImages: "+Memory.randomImages);
     },
     
-    "generateTable": function(rows, cols, randomNumbers){
+    generateTable: function(rows, cols, randomNumbers){
         var board1, table, tableBody, tableRow, tableCell, link, image, imageNumber, imageClass;
 
         //Hämta board1 från index.html för att kunna manipulera den
@@ -42,7 +42,7 @@ var Memory = {
                 image = document.createElement("img");
                 
                 imageNumber = ((j * rows) + i);
-                imageClass = ""+this.randomNumbers[0][imageNumber]+"";
+                imageClass = ""+Memory.randomNumbers[0][imageNumber]+"";
                 
                 //Sätt attribut
                 image.setAttribute("src", "pics/0.png");
@@ -55,15 +55,33 @@ var Memory = {
                 tableCell.appendChild(link);
                 link.appendChild(image);
                 
-                image.addEventListener('click', this.flipCard);
+                image.addEventListener('click', Memory.flipCard);
             }
         }
     },
     
-    flipCard : function(){
-        //this hänvisar här till image i generateTable
+    flipCard : function(){ //skriver jag in e som parameter kan jag sedan använda e.target om jag vill
+        
+        // if (Memory.firstClick === null){
+                
+        // };
+        
+        
+        //Genom att skriva på det här viset kommer jag åt variabeln image i 
+        //generateTable även i metod setTimeout
+        var that = this;
+        
+        //this (alt e.target) är här motsvarande variablen image i generateTable, 
+        //eftersom det är image som kör igång funktionen
         var imageClass = this.getAttribute('class');
         this.setAttribute("src", "pics/"+imageClass+".png");
+        
+        //Timeout under 1 sekund
+        setTimeout(function(){
+            //that hänvisar här till image i generateTable
+            imageClass = that.getAttribute('class');
+            that.setAttribute("src", "pics/0.png");
+        }, 1000);
     }
 };
 
