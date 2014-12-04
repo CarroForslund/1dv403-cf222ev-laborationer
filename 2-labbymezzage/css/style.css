@@ -18,7 +18,7 @@ h1 {
 }
 
 #container {
-    width: 50%;
+    width: 500px;
     height: 600px;
     margin: 20px auto;
     background-color: #EF5092;
@@ -33,14 +33,14 @@ h1 {
 }
     
 .board {
-    width: 400px;
+    width: 350px;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .messagearea {
     height: 300px;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: #BE1E7B;
     padding: 5px;
     -webkit-box-shadow: inset 3px 3px 10px 5px #991361;

@@ -28,7 +28,8 @@ Message.prototype.toString = function(){
     month = month[date.getMonth()];
     year = date.getFullYear();
     
-    return "Detta meddelande publicerades " +day+ " " +month+ " " +year+ " klockan " +this.getDateText();
+    return "Detta meddelande publicerades " +day+ " " +month+ " " +year+
+    " klockan " +this.getDateText();
 };
 
 Message.prototype.getHTMLText = function(){

@@ -84,6 +84,7 @@ window.onload = function(){
             var count = document.getElementById("count1");
             count.innerHTML = "<p>Antal meddelanden: " + MessageBoard.messages.length +"</p>";
         }
+        
     };
     
     // Kod för att hantera utskrift och inmatning
