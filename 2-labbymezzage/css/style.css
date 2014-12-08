@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Luckiest+Guy);
+@import url(//fonts.googleapis.com/css?family=Luckiest+Guy);
 
 body {
     background-image: url("../img/My-Little-Pony-Wallpaper-HD.jpg");
@@ -8,6 +8,7 @@ body {
     height: 1000px;
     color: #FFFFFF;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 h1 {
@@ -20,7 +21,7 @@ h1 {
 #container {
     width: 500px;
     height: 600px;
-    margin: 20px auto;
+    margin: 100px auto;
     background-color: #EF5092;
     padding: 20px;
     -webkit-border-radius: 4px;
