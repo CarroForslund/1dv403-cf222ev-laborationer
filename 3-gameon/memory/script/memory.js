@@ -23,24 +23,20 @@ var Memory = {
     generateTable: function(rows, cols, randomNumbers){
         var board1, table, tableBody, tableRow, tableCell, link, image, imageNumber, imageClass;
 
-        //Hämta board1 från index.html för att kunna manipulera den
         board1 = document.getElementById("board1");
         board1.innerHTML = "";
         //Skapa tabellelementen i board1
         table = document.createElement("table");
         tableBody = document.createElement("tbody");
         
-        //Skriv ut Table och Table Body
         table.appendChild(tableBody);
         board1.appendChild(table);
         
         for(var i = 0; i < cols; i++){
-            //Skapa och sriv ut tabellrader
             tableRow = document.createElement("tr");
             tableBody.appendChild(tableRow);
             
             for (var j = 0; j < rows; j++){
-                //Skapa tabellceller och innehåll
                 tableCell = document.createElement("td");
                 link = document.createElement("a");
                 image = document.createElement("img");
@@ -48,7 +44,6 @@ var Memory = {
                 imageNumber = ((j * cols) + i);
                 imageClass = ""+randomNumbers[imageNumber]+"";
                 
-                //Sätt attribut
                 image.setAttribute("src", "pics/9.png");
                 image.setAttribute("alt", "?");
                 image.setAttribute("class", imageClass);
@@ -56,7 +51,6 @@ var Memory = {
                 image.flipped = false;
                 link.setAttribute("href", "#");
                 
-                //Skriv ut tabellceller och deras innehåll
                 tableRow.appendChild(tableCell);
                 tableCell.appendChild(link);
                 link.appendChild(image);
@@ -79,12 +73,13 @@ var Memory = {
             //var that = this;
             var counter;
 
-            //Registrera antal klick
             Memory.countClick += 1;
             img.flipped = true;
             console.log(Memory.countClick);
             counter = document.getElementById("count1");
-            counter.innerHTML = "<p>Antal klick: " +Memory.countClick+ "<br />Poäng: " +Memory.score+ "</p>";
+            if (Memory.countClick%2 === 0){
+                counter.innerHTML = "<p>Försök: " +(Memory.countClick/2)+ "<br />Poäng: " +Memory.score+ "</p>";
+            }
             
             //this (alt e.target) är här motsvarande variablen link i generateTable, 
             //eftersom det är link som kör igång funktionen
@@ -108,7 +103,7 @@ var Memory = {
                     Memory.score += 1;
                     counter.innerHTML = "<p>Antal klick: " +Memory.countClick+ "<br />Poäng: " +Memory.score+ "</p>";
                     if (Memory.score === Memory.maxScore){
-                        alert("Grattis! Du klarade spelet på " + (Memory.countClick / 2 )+ " försök ("+(Memory.countClick)+" klick).");
+                        alert("Grattis! Du klarade spelet på " +(Memory.countClick/2)+ " försök ("+(Memory.countClick)+" klick).");
                         //Här ska spelet startas om/sidan laddas om, Memory.init
                     }
                     Memory.clearClickData();
@@ -119,10 +114,8 @@ var Memory = {
                     for (var i = 0; i < Memory.imageLinks.length; i++) {
                         Memory.imageLinks[i].removeEventListener('click', Memory.flipCard);
                     }
-                    //Vänd tillbaka bilden efter 1 sekund
                     setTimeout(function(){
-                        //that hänvisar här till image i generateTable
-                        //imageClass = that.getAttribute('class');
+                        //that hänvisar här till link i generateTable
                         Memory.firstClick.flipped = false;
                         Memory.secondClick.flipped = false;
                         Memory.firstClick.setAttribute("src", "pics/9.png");
