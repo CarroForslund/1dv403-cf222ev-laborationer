@@ -3,7 +3,7 @@ function Desktop(){
    this.content = document.querySelector('#wrapper');//public
 }
 
-Desktop.prototype.addApp = function(imagesrc){
+Desktop.prototype.addApp = function(name, imagesrc){
     var img = document.createElement('img');
     img.setAttribute('src', imagesrc);
     var a = document.createElement('a');
@@ -14,7 +14,8 @@ Desktop.prototype.addApp = function(imagesrc){
     
     a.addEventListener('click', function(e){
         e.preventDefault();
-        var win = new Window('Bilder', 'images/photo.png');
-        //Gallery.getImages();
+        var win = new Window(name, imagesrc);
+        Gallery.init();
+        //var gallery = new Gallery();
     });
 };

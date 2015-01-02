@@ -42,10 +42,28 @@ body {
 .windowBody {
     width: 100%;
     height: 80%;
+    overflow-y: scroll;
 }
 
 .windowFooter {
     width: 100%;
     height: 10%;
     background-color: #000000;
+}
+
+.close {
+    width: 20px;
+    height: 20px;
+    color: #FFFFFF;
+}
+
+.load {
+    width: 20px;
+    height: 100%;
+    background-image: url('../images/ajax-loader.gif');
+    background-repeat: no-repeat;
+}
+
+.hidden {
+    display: none;
 }

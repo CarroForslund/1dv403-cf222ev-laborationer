@@ -2,7 +2,7 @@
 
 function newDesktop(){
     var desktop = new Desktop();
-    desktop.addApp('images/photo.png');
+    desktop.addApp('Galleri', 'images/photo.png');
 }
 
 window.onload = function(){
