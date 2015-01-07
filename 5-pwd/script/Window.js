@@ -11,7 +11,7 @@ Window.prototype.openWindow = function(type, imagesrc, windowId){
         var gallery = new Gallery();
         gallery.openGallery();
     }
-    
+
     windowArea = document.getElementById('windowArea');
 
     newWindow = document.createElement('div');
@@ -34,9 +34,9 @@ Window.prototype.openWindow = function(type, imagesrc, windowId){
     close.setAttribute('class', 'close');
     close.setAttribute('alt', 'X');
     //https://developer.mozilla.org/en-US/docs/Web/API/Node.removeChild
-    close.addEventListener('click', function(e){
+    close.addEventListener('click', function(){
         //newWindow.setAttribute('class', 'hidden');
-        e.preventDefault();
+        //e.preventDefault();
         var windowToClose = document.getElementById(windowId);
         var throwawayNode = windowArea.removeChild(windowToClose);
     });

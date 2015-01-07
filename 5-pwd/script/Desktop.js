@@ -4,8 +4,8 @@ function Desktop(){
 }
 
 Desktop.prototype.addApp = function(type, imagesrc){
-    var img, a, count;
-    count = 0;
+    var img, a, windowId;
+    windowId = 0;
     
     img = document.createElement('img');
     img.setAttribute('src', imagesrc);
@@ -17,9 +17,10 @@ Desktop.prototype.addApp = function(type, imagesrc){
     
     a.addEventListener('click', function(e){
         e.preventDefault();
+        windowId = windowId += 1;
         // var win = new Window(name, imagesrc);
         // //Gallery.init();
         var win = new Window();
-        win.openWindow(type, imagesrc);
+        win.openWindow(type, imagesrc, windowId);
     });
 };
