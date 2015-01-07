@@ -3,10 +3,13 @@ function Desktop(){
    this.content = document.querySelector('#wrapper');//public
 }
 
-Desktop.prototype.addApp = function(name, imagesrc){
-    var img = document.createElement('img');
+Desktop.prototype.addApp = function(type, imagesrc){
+    var img, a, count;
+    count = 0;
+    
+    img = document.createElement('img');
     img.setAttribute('src', imagesrc);
-    var a = document.createElement('a');
+    a = document.createElement('a');
     a.setAttribute('href', '#');
     a.setAttribute('class', 'appLink');
     document.querySelector('#menu').appendChild(a);
@@ -14,8 +17,9 @@ Desktop.prototype.addApp = function(name, imagesrc){
     
     a.addEventListener('click', function(e){
         e.preventDefault();
-        var win = new Window(name, imagesrc);
-        Gallery.init();
-        //var gallery = new Gallery();
+        // var win = new Window(name, imagesrc);
+        // //Gallery.init();
+        var win = new Window();
+        win.openWindow(type, imagesrc);
     });
 };

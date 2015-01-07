@@ -1,10 +1,16 @@
 "use strict";
-//Skapa nytt fönster
-//Innehållet beror på vilken app man öppnar
-function Window(name, imagesrc) {
-    
+function Window() {
+    this.content = document.querySelector('#windowArea');
+}
+
+Window.prototype.openWindow = function(type, imagesrc){
     var windowArea, newWindow, windowHead, windowBody, windowFooter, 
-        icon, load, close;
+        h1, title, icon, load, close;
+        
+    if (type = 'Gallery'){
+        var gallery = new Gallery();
+        gallery.openGallery();
+    };
     
     windowArea = document.getElementById('windowArea');
 
@@ -17,6 +23,10 @@ function Window(name, imagesrc) {
     icon = document.createElement('img');
     icon.setAttribute('src', imagesrc);
     icon.setAttribute('class', 'windowIcon');
+    
+    h1 = document.createElement('h1');
+    h1.setAttribute('class', 'windowTitle');
+    title = document.createTextNode(type);
     
     close = document.createElement('img');
     //close.setAttribute('src', '');
@@ -38,11 +48,13 @@ function Window(name, imagesrc) {
     windowFooter = document.createElement('div');
     windowFooter.setAttribute('class', 'windowFooter');
     
+    h1.appendChild(title);
     windowHead.appendChild(icon);
+    windowHead.appendChild(title);
     windowHead.appendChild(close);
     windowFooter.appendChild(load);
     newWindow.appendChild(windowHead);
     newWindow.appendChild(windowBody);
     newWindow.appendChild(windowFooter);
     windowArea.appendChild(newWindow);
-}
+};
