@@ -3,19 +3,20 @@ function Window() {
     this.content = document.querySelector('#windowArea');
 }
 
-Window.prototype.openWindow = function(type, imagesrc){
+Window.prototype.openWindow = function(type, imagesrc, windowId){
     var windowArea, newWindow, windowHead, windowBody, windowFooter, 
         h1, title, icon, load, close;
         
     if (type = 'Gallery'){
         var gallery = new Gallery();
         gallery.openGallery();
-    };
+    }
     
     windowArea = document.getElementById('windowArea');
 
     newWindow = document.createElement('div');
     newWindow.setAttribute('class', 'newWindow');
+    newWindow.setAttribute('id', windowId);
 
     windowHead = document.createElement('div');
     windowHead.setAttribute('class', 'windowHead');
@@ -32,8 +33,12 @@ Window.prototype.openWindow = function(type, imagesrc){
     //close.setAttribute('src', '');
     close.setAttribute('class', 'close');
     close.setAttribute('alt', 'X');
+    //https://developer.mozilla.org/en-US/docs/Web/API/Node.removeChild
     close.addEventListener('click', function(e){
-        newWindow.setAttribute('class', 'hidden');
+        //newWindow.setAttribute('class', 'hidden');
+        e.preventDefault();
+        var windowToClose = document.getElementById(windowId);
+        var throwawayNode = windowArea.removeChild(windowToClose);
     });
     
     windowBody = document.createElement('div');

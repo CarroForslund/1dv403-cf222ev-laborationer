@@ -36,8 +36,6 @@ Gallery.prototype.openGallery = function(){
                     thumbLink.setAttribute('class', 'thumbLink');
                     thumbLink.setAttribute('href', '#');
                     
-                    
-                    
                     thumb = document.createElement('img');
                     //thumb.setAttribute('width', thumbWidth);
                     //thumb.setAttribute('height', thumbHeight);
@@ -57,12 +55,8 @@ Gallery.prototype.openGallery = function(){
                     
                     windowBody.appendChild(thumbLink);
                     thumbLink.appendChild(thumb);
-                    //switchBG(thumbLink, URL);
                     
                     switchBG(thumbLink, imageURL);
-                    // thumbLink.addEventListener('click', function(){
-                    //     switchBG(imageURL);
-                    // });
                 }
             }
             else {
