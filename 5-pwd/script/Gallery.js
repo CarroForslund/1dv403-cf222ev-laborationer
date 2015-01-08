@@ -13,7 +13,6 @@ Gallery.prototype.openGallery = function(){
             console.log('byt bakgrund på body');
             var body = document.getElementsByTagName("body")[0];
             body.style.backgroundImage = 'url('+imageURL+')';
-            //body.setAttribute('background-repeat', 'repeat');
         });
     };
     

@@ -1,4 +1,19 @@
+body {
+    background-color: #72BBE8;
+}
+    
 #container {
-    width: 400px;
+    width: 250px;
     margin: 60px auto;
+    padding: 5px 30px 50px 30px;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 10px 5px #6B6B6B;
+    -moz-box-shadow: 2px 2px 5px 2px #6B6B6B;
+    box-shadow: 5px 5px 10px 5px #6B6B6B;
+}
+
+.hidden {
+    display: none;
 }
