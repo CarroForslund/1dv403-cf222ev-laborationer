@@ -66,13 +66,16 @@ body {
 }
 
 .thumbLink {
-    /*background-color: #6D6D6D;*/
-    margin: 2px 2px;
+    display: inline-block;
+    border: none;
+    background-color: #000000;
+    margin: 3px;
 }
 
-/*.thumb {*/
-/*    margin: auto;*/
-/*}*/
+.thumb {
+    display: block;
+    margin: auto;
+}
 
 .hidden {
     display: none;

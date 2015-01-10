@@ -1,16 +1,13 @@
-"use strict";
+'use strict';
 function Window() {
-    this.content = document.querySelector('#windowArea');
+    this.content = document.querySelector('.windowArea');
 }
 
 Window.prototype.openWindow = function(type, imagesrc, windowId){
     var windowArea, newWindow, windowHead, windowBody, windowFooter, 
         h1, title, icon, load, close;
         
-    if (type = 'Gallery'){
-        var gallery = new Gallery();
-        gallery.openGallery();
-    }
+    
 
     windowArea = document.getElementById('windowArea');
 
@@ -41,12 +38,10 @@ Window.prototype.openWindow = function(type, imagesrc, windowId){
         var throwawayNode = windowArea.removeChild(windowToClose);
     });
     
-    windowBody = document.createElement('div');
-    windowBody.setAttribute('class', 'windowBody');
-    windowBody.setAttribute('id', 'windowBody');
+    this.windowBody = document.createElement('div'); //this gör det publikt
+    this.windowBody.setAttribute('class', 'windowBody');
     
     load = document.createElement('div');
-    load.setAttribute('id', 'load');
     load.setAttribute('class', 'load');
     //load.setAttribute('class', 'hidden');
     
@@ -59,7 +54,12 @@ Window.prototype.openWindow = function(type, imagesrc, windowId){
     windowHead.appendChild(close);
     windowFooter.appendChild(load);
     newWindow.appendChild(windowHead);
-    newWindow.appendChild(windowBody);
+    newWindow.appendChild(this.windowBody);
     newWindow.appendChild(windowFooter);
     windowArea.appendChild(newWindow);
+    
+    if (type = 'Gallery'){
+        var gallery = new Gallery(this);
+        gallery.openGallery();
+    }
 };

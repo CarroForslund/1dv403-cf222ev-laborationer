@@ -103,7 +103,7 @@ var Memory = {
                     Memory.score += 1;
                     counter.innerHTML = "<p>Antal klick: " +Memory.countClick+ "<br />Poäng: " +Memory.score+ "</p>";
                     if (Memory.score === Memory.maxScore){
-                        alert("Grattis! Du klarade spelet på " +(Memory.countClick/2)+ " försök ("+(Memory.countClick)+" klick).");
+                        alert("Grattis! Du klarade spelet på " +(Memory.countClick/2)+ " försök.");
                         //Här ska spelet startas om/sidan laddas om, Memory.init
                     }
                     Memory.clearClickData();

@@ -1,10 +1,12 @@
-"use strict";
+'use strict';
 
-function newDesktop(){
-    var desktop = new Desktop();
-    desktop.addApp('Gallery', 'images/photo.png');
-}
+// function newDesktop(){
+//     var desktop = new Desktop();
+//     desktop.addApp('Gallery', 'images/photo.png');
+// }
 
 window.onload = function(){
-    newDesktop();
+    var desktop = new Desktop();
+    desktop.addApp('Gallery', 'images/photo.png');
+    //newDesktop();
 };

@@ -1,6 +1,6 @@
-"use strict";
-function Gallery() {
-    this.content = document.querySelector('#windowBody');
+'use strict';
+function Gallery(window) {
+    this.content = window.windowBody;
 }
 
 Gallery.prototype.openGallery = function(){
@@ -16,21 +16,34 @@ Gallery.prototype.openGallery = function(){
         });
     };
     
-    // var maxWidth = 75;
-    // var maxHeight = 50;
-    
     xhr.onreadystatechange = function(){
-        var imageArray, i, thumbLink, thumb, thumbUrl, load, windowBody, imageURL;
+        var imageArray, i, j, thumbLink, thumb, thumbURL, load, windowBody, imageURL,
+            thumbWrap;
+        var maxWidth = 0;
+        var maxHeight = 0;
+        var thumbWidth, thumbHeight;
         
         if (xhr.readyState === 4){
             console.log('xhr.readyState === 4');
             if (xhr.status === 200){
                 imageArray = JSON.parse(xhr.responseText);
+
+                for(j = 0; j < imageArray.length; j++){
+                    thumbWidth = imageArray[j].thumbWidth;
+                    thumbHeight = imageArray[j].thumbHeight;
+                    if (thumbWidth > maxWidth) {
+                        maxWidth = thumbWidth;
+                    }
+                    if (thumbHeight > maxHeight) {
+                        maxHeight = thumbHeight;
+                    }
+                }
                 
                 for (i = 0; i < imageArray.length; i+=1) {
-                    windowBody = document.getElementById('windowBody');
+                    windowBody = this.content;
                     imageURL = imageArray[i].URL;
-                    thumbUrl = imageArray[i].thumbURL;
+                    thumbURL = imageArray[i].thumbURL;
+                    
                     thumbLink = document.createElement('a');
                     thumbLink.setAttribute('class', 'thumbLink');
                     thumbLink.setAttribute('href', '#');
@@ -38,19 +51,11 @@ Gallery.prototype.openGallery = function(){
                     thumb = document.createElement('img');
                     //thumb.setAttribute('width', thumbWidth);
                     //thumb.setAttribute('height', thumbHeight);
-                    thumb.setAttribute('src', thumbUrl);
+                    thumb.setAttribute('src', thumbURL);
                     thumb.setAttribute('class', 'thumb');
-                    
-                    // var thumbWidth = imageArray[i].thumbWidth;
-                    // var thumbHeight = imageArray[i].thumbHeight;
-                    // if (thumbWidth > maxWidth) {
-                    //     maxWidth = thumbWidth;
-                    // }
-                    // if (thumbHeight > maxHeight) {
-                    //     maxHeight = thumbHeight;
-                    // }
-                    // thumbLink.setAttribute('width', maxWidth);
-                    // thumbLink.setAttribute('height', maxHeight);
+
+                    thumbLink.style.width = maxWidth+'px';
+                    thumbLink.style.height = maxHeight+'px';
                     
                     windowBody.appendChild(thumbLink);
                     thumbLink.appendChild(thumb);
@@ -61,10 +66,10 @@ Gallery.prototype.openGallery = function(){
             else {
                 console.log('Läsfel, status: '+xhr.status);
             }
-            load = document.getElementById('load');
+            load = document.querySelector('.load');
             load.setAttribute('class', 'hidden');
         }
-    };
+    }.bind(this); // gör att jag kan komma åt this uppifrån
     xhr.open("GET", url, true); //Synkront = false (webbapplikation) | Asynkront = true (webbsida)
-    xhr.send(null); //Skicka svaret på frågan till servern
+    xhr.send(null);
 };

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 function Desktop(){
    this.content = document.querySelector('#wrapper');//public
 }
@@ -18,8 +18,6 @@ Desktop.prototype.addApp = function(type, imagesrc){
     a.addEventListener('click', function(e){
         e.preventDefault();
         windowId = windowId += 1;
-        // var win = new Window(name, imagesrc);
-        // //Gallery.init();
         var win = new Window();
         win.openWindow(type, imagesrc, windowId);
     });
