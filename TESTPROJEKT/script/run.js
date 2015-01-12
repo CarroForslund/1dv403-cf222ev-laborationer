@@ -1,8 +1,8 @@
 'use strict';
 window.onload = function(){
+    //console.log(window);
     var desktop = new Desktop();
-    desktop.addApp('Gallery', 'images/photo.png');
-    desktop.addApp('RSS', 'images/photo.png');
-    desktop.addApp('Memory', 'images/photo.png');
-    //newDesktop();
+    desktop.addApp('Gallery', 'images/gallery.png');
+    desktop.addApp('RSS', 'images/rss.png');
+    desktop.addApp('Memory', 'images/memory.png');
 };

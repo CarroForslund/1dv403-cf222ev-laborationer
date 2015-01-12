@@ -4,8 +4,13 @@ function Rss(window) {
     this.footer = window.footer;
 }
 
+// setInterval(function(){
+    
+// }, 3000);
+
 Rss.prototype.openRss = function(){
-    var url = 'http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/';
+    console.log('uppdatering check!');
+    var url = 'http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url='+escape('http://www.dn.se/m/rss/senaste-nytt');
     var xhr = new XMLHttpRequest();
     
     xhr.onreadystatechange = function(){
@@ -24,6 +29,6 @@ Rss.prototype.openRss = function(){
             load.setAttribute('class', 'hidden');
         }
     }.bind(this); // gör att jag kan komma åt this uppifrån
-    xhr.open("GET", url+'?url='+escape('http://www.dn.se/m/rss/senaste-nytt'), true); //Synkront = false (webbapplikation) | Asynkront = true (webbsida)
+    xhr.open("GET", url, true); //Synkront = false (webbapplikation) | Asynkront = true (webbsida)
     xhr.send(null);
 };

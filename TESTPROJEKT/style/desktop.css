@@ -1,68 +1,112 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans|Special+Elite);
+
 body {
     margin: 0;
-    background-color: #ECECEC;
+    background-image: url(../images/pinkworldmap.jpg);
+    background-position: bottom;
+    font-family: 'Droid Sans', sans-serif;
+    overflow-x: hidden;
 }   
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Special Elite', cursive;
+    color: #4A0926;
+    background-color: #CC578A;
+    padding: 10px;
+}
+
+a {
+    color: #CC578A;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #4A0926;
+    text-decoration: underline;
+}
 
 #menu {
     height: 50px;
     width: 100%;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
-    background-color: #000000;
+    background-color: #99134E;
+    -webkit-box-shadow: 0 -2px 10px 2px #524E2A;
+    /*-moz-box-shadow: 0 -2px 10px 2px #524E2A;*/
+    box-shadow: 0 -2px 10px 2px #524E2A;
+    opacity: 0.9;
+    padding: 5px;
 }
 
 #menu img {
     margin: auto 5px;
-    -webkit-filter: invert(100%);
+    width: 50px;
+    height: 50px;
 }
 
 .window {
-    width: 400px;
-    /*margin: 10px;*/
-    /*float: left;*/
+    width: 300px;
     overflow: hidden;
-    border: 1px solid #000000;
+    border: 2px solid #99134E;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     background-color: #BEBEBE;
+    -webkit-box-shadow: 2px 2px 10px 2px #524E2A;
+    box-shadow: 2px 2px 10px 2px #524E2A;
     z-index: 0;
     display: inline-block;
     position: absolute;
 }
 
 .windowIcon {
-    width: 20px;
-    height: 20px;
-    margin-left: 2px;
-    -webkit-filter: invert(100%);
+    width: 30px;
+    height: 30px;
+}
+
+.windowTitle {
+    display: inline-block;
+    margin-left: 3px;
+    font-family: 'Special Elite', cursive;
 }
 
 .windowHeader {
     width: 100%;
-    height:50px;
-    border: 1px solid #000000;
-    background-color: #ECECEC;
+    height:40px;
+    padding: 5px;
+    color: #FFFFFF;
+    background: #e286ff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e286ff 0%, #e286ff 0%, #99134e 9%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e286ff), color-stop(0%,#e286ff), color-stop(9%,#99134e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #e286ff 0%,#e286ff 0%,#99134e 9%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #e286ff 0%,#e286ff 0%,#99134e 9%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #e286ff 0%,#e286ff 0%,#99134e 9%); /* IE10+ */
+    background: linear-gradient(to bottom,  #e286ff 0%,#e286ff 0%,#99134e 9%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e286ff', endColorstr='#99134e',GradientType=0 ); /* IE6-9 */
+
 }
 
 .windowBody {
     width: 100%;
-    height: 400px;
+    height: 360px;
     padding: 2px;
     overflow-y: scroll;
-    /*display: inline-block;*/
     background-color: #FFFFFF;
 }
 
 .windowFooter {
     width: 100%;
-    height: 30px;
-    border: 1px solid #000000;
-    background-color: #ECECEC;
+    height: 10px;
+    background-color: #99134E;
     position: relative;
+    padding: 10px;
 }
 
-.close {
+.close img{
     width: 20px;
     height: 20px;
     color: #FFFFFF;
+    float: right;
+    margin-right: 10px;
 }
 
 .load {
@@ -74,8 +118,10 @@ body {
 
 .thumbLink {
     display: inline-block;
-    border: none;
-    background-color: #000000;
+    border: 2px solid #E286FF;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #E286FF;
     margin: 3px;
 }
 
@@ -86,4 +132,8 @@ body {
 
 .hidden {
     display: none;
+}
+
+.rssFeed p, .rssFeed a {
+    padding: 0 10px;
 }

@@ -48,8 +48,6 @@ Gallery.prototype.openGallery = function(){
                     thumbLink.setAttribute('href', '#');
                     
                     thumb = document.createElement('img');
-                    //thumb.setAttribute('width', thumbWidth);
-                    //thumb.setAttribute('height', thumbHeight);
                     thumb.setAttribute('src', thumbURL);
                     thumb.setAttribute('class', 'thumb');
 

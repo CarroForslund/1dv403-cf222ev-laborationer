@@ -2,6 +2,7 @@
 function Memory(window) {
     this.content = window.content;
     this.footer = window.footer;
+    Memory.prototype.openMemory();
 }
 
 Memory.prototype.openMemory = function(){
@@ -83,7 +84,7 @@ Memory.prototype.openMemory = function(){
                 counter.innerHTML = "<p>Försök: " +(countClick/2)+ "<br />Poäng: " +score+ "</p>";
             }
             var imageClass = img.getAttribute('class');
-            img.setAttribute("src", "images/memory/"+imageClass+".jpg");
+            img.setAttribute("src", "images/memory/"+imageClass+".png");
             if (firstClick === null){
                 //Tilldela klick 1 ett värde
                 firstClick = img;
@@ -100,8 +101,7 @@ Memory.prototype.openMemory = function(){
                     score += 1;
                     counter.innerHTML = "<p>Försök: " +(countClick/2)+ "<br />Poäng: " +score+ "</p>";
                     if (score === maxScore){
-                        alert("Grattis! Du klarade spelet på " +(countClick/2)+ " försök ("+(countClick)+" klick).");
-                        //Här ska spelet startas om/sidan laddas om, Memory.init
+                        alert("Grattis! Du klarade spelet på " +(countClick/2)+ " försök.");
                     }
                     clearClickData();
                     this.removeEventListener('click', flipCard);
@@ -112,14 +112,13 @@ Memory.prototype.openMemory = function(){
                         imageLinks[i].removeEventListener('click', flipCard);
                     }
                     setTimeout(function(){
-                        //that hänvisar här till link i generateTable
                         firstClick.flipped = false;
                         secondClick.flipped = false;
                         firstClick.setAttribute("src", "images/memory/9.png");
                         secondClick.setAttribute("src", "images/memory/9.png");
                         console.log("firstClick = " +firstClick.getAttribute('class') + ", secondClick = " +secondClick.getAttribute('class'));
-                        firstClick.addEventListener('click', flipCard);
-                        secondClick.addEventListener('click', flipCard);
+                        firstClick.parentNode.addEventListener('click', flipCard);
+                        secondClick.parentNode.addEventListener('click', flipCard);
                         if (firstClick.getAttribute('src') === "images/memory/9.png" && secondClick.getAttribute('src') === "images/memory/9.png") {
                             for (var i = 0; i < imageLinks.length; i++) {
                                 imageLinks[i].addEventListener('click', flipCard);

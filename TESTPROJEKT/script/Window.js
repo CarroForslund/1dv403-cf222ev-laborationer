@@ -1,41 +1,39 @@
 'use strict';
 function Window(desktop) {
-    //this.content = document.querySelector('#windowTemplate');
-    //var myWindow = document.querySelector('.window');
-    //this.windowClone = myWindow.cloneNode(true); //var dupNode = node.cloneNode(deep);
-    
     var template = document.querySelector('#windowTemplate'); //Hämta huvudtemplate
-    var windowTemplate = template.content.querySelector('.window'); //För att hämta innehållet måste jag använda content
+    var tmp = document.documentMode;
     
-    //Klonar window
-    this.window = windowTemplate.cloneNode(true);
-    //Hämtar ut element från window
-    //this.title = this.window.querySelector('.windowTitle');
-    this.close = this.window.querySelector('.close');
-    //this.header = this.window.querySelector('.windowHeader');
-    this.content = this.window.querySelector('.windowBody');
-    this.footer = this.window.querySelector('.windowFooter');
+    //Richard googlade fram denna lösning med if-satsen för att få template att fungera i IE
+    //då den inte klarar av att hantera content
+    var windowTemplate;
+    if(tmp){
+         windowTemplate = template.querySelector(".window");
+    }else{
+         windowTemplate = template.content.querySelector(".window"); //För att hämta innehållet måste jag använda content
+    }
     
-    //Lägg till window till desktop
-    desktop.content.appendChild(this.window);
+    this.window = windowTemplate.cloneNode(true); //Klonar window
+    desktop.content.appendChild(this.window); //Lägg till window till desktop
 }
 
-Window.prototype.openWindow = function(type, imagesrc, zIndex, winMargin){
-    console.log();
-    
-    // OBS!!! Fungerar inte korrekt!!!
-    // if ((winMargin + this.window.clientHeight) < (desktopHeight + this.window.clientHeight)){
-    //     this.window.style.zIndex=zIndex;
-    //     this.window.style.margin=winMargin+'px';
-    // }
-    // else{
-    //     zIndex=10;
-    //     winMargin=100;
-    //     this.window.style.zIndex=zIndex;
-    //     this.window.style.margin=winMargin+'px';
-    // }
+Window.prototype.openWindow = function(type, imagesrc, zIndex, winMarginTop, winMarginLeft){
+    zIndex += 1;
+    //Hämtar ut element från window
+    this.close = this.window.querySelector('.close');
+    this.icon = this.window.querySelector('.windowIcon');
+    this.header = this.window.querySelector('.windowHeader');
+    this.content = this.window.querySelector('.windowBody');
+    this.footer = this.window.querySelector('.windowFooter');
+    this.title = this.window.querySelector('.windowTitle');
+
+    var title = document.createTextNode(type);
+    this.title.appendChild(title);
+    this.icon.setAttribute('src', imagesrc);
+    this.icon.setAttribute('alt', type);
+
     this.window.style.zIndex=zIndex;
-    this.window.style.margin=winMargin+'px';
+    this.window.style.marginTop=winMarginTop+'px';
+    this.window.style.marginLeft=winMarginLeft+'px';
     
     this.close.addEventListener('click', function(e){
         e.preventDefault();
@@ -57,13 +55,4 @@ Window.prototype.openWindow = function(type, imagesrc, zIndex, winMargin){
             var gallery = new Gallery(this);
             gallery.openGallery();
     }
-    
-    // if (type === 'Gallery'){
-    //     var gallery = new Gallery(this);
-    //     gallery.openGallery();
-    // }
-    // else if (type === 'RSS'){
-    //     //var rss = new Rss(this);
-    //     //rss.openRss();
-    // }
 };

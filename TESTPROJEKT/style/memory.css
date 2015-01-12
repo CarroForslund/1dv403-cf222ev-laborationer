@@ -1,45 +1,9 @@
-@import url(//fonts.googleapis.com/css?family=Luckiest+Guy);
-
-/*body {
-    background-image: url("My-Little-Pony-Wallpaper-HD.jpg");
-    background-size: cover;
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    height: 1000px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #EF5092;
-    text-align: center;
-    overflow: hidden;
-}
-
-h1 {
-    font-family: 'Luckiest Guy', cursive;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
-#container {
-    width: 300px;
-    height: 400px;
-    margin: 90px auto;
-    background-color: #FFFFFF;
-    padding: 20px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: 5px 5px 10px 5px #4A4A4A;
-    box-shadow: 5px 5px 10px 5px #4A4A4A;
-    border: 10px solid #EF5092;
-    opacity: 0.8;
-    overflow: auto;
-    
-}*/
-
 table {
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #FFFFFF;
 }
 
 table img {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
