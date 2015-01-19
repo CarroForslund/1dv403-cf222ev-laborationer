@@ -1,5 +1,6 @@
 'use strict';
-function Rss(window) {
+var NS = NS || {};
+NS.Rss = function(window) {
     this.content = window.content;
     this.footer = window.footer;
 }
@@ -8,7 +9,7 @@ function Rss(window) {
     
 // }, 3000);
 
-Rss.prototype.openRss = function(){
+NS.Rss.prototype.openRss = function(){
     console.log('uppdatering check!');
     var url = 'http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url='+escape('http://www.dn.se/m/rss/senaste-nytt');
     var xhr = new XMLHttpRequest();

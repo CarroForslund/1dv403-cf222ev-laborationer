@@ -53,4 +53,4 @@ Message.twoDigits = function(digit){
         digit = "0" + digit;
     }
     return digit;
-}
+};

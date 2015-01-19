@@ -9,10 +9,11 @@ window.onload = function(){
 		//Checka om inmatat datum är i rätt format, annars kasta felmeddelande
 		//Skapa ett nytt datumobjekt med inmatat födelsedatum
 		//Skapa ett nytt datumobjekt med dagens datum
-		if (!isNaN(new Date(date).getTime())){  //parse???
+		if (!isNaN(new Date(date).getTime())){
 			bday = new Date(date);
 			today = new Date();
 			
+			//Enligt Andreas
 			// if(birthday.getMonth() == currentDate.getMonth() && birthday.getDate() == currentDate.getDate()){
 			// 	return 0;
 			// }
@@ -32,7 +33,7 @@ window.onload = function(){
 			if (today > bday) {
 	  			bday.setFullYear(today.getFullYear() + 1);
 			}
-			daysToNextBday = Math.floor((bday - today) / (1000*60*60*24))
+			daysToNextBday = Math.floor((bday - today) / (1000*60*60*24));
 				
 			return daysToNextBday;
 		}
@@ -55,7 +56,7 @@ window.onload = function(){
 		p.classList.remove( "error");
 
 		try {
-			var answer = birthday(input.value) // Läser in texten från textrutan och skickar till funktionen "convertString"
+			var answer = birthday(input.value); // Läser in texten från textrutan och skickar till funktionen "convertString"
 			var message;
 			switch (answer){
 				case 0: message = "Grattis på födelsedagen!";

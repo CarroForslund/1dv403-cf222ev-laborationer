@@ -1,65 +1,70 @@
 'use strict';
-function Window() {
-    this.content = document.querySelector('.windowArea');
-}
+var NS = NS || {};
+NS.Window = function(desktop) {
+    var template = document.querySelector('#windowTemplate'); //Hämta huvudtemplate
+    var tmp = document.documentMode;
+    
+    //För att få template att fungera med IE då den inte hanterar content
+    var windowTemplate;
+    if(tmp){
+         windowTemplate = template.querySelector(".window");
+    }else{
+         windowTemplate = template.content.querySelector(".window"); //För att hämta innehållet måste jag använda content
+    }
+    
+    this.window = windowTemplate.cloneNode(true); //Klonar window
+    desktop.content.appendChild(this.window); //Lägg till window till desktop
+};
 
-Window.prototype.openWindow = function(type, imagesrc, windowId){
-    var windowArea, newWindow, windowHead, windowBody, windowFooter, 
-        h1, title, icon, load, close;
+NS.Window.zIndex = 0;
+
+NS.Window.prototype.focus = function(){
+    NS.Window.zIndex = NS.Window.zIndex + 1;
+};
+
+NS.Window.prototype.openWindow = function(type, imagesrc, zIndex, winMarginTop, winMarginLeft){
+    NS.Window.prototype.focus();
+    //Hämtar ut element från window
+    this.close = this.window.querySelector('.close');
+    this.icon = this.window.querySelector('.windowIcon');
+    this.header = this.window.querySelector('.windowHeader');
+    this.content = this.window.querySelector('.windowBody');
+    this.footer = this.window.querySelector('.windowFooter');
+    this.title = this.window.querySelector('.windowTitle');
+
+    var title = document.createTextNode(type);
+    this.title.appendChild(title);
+    this.icon.setAttribute('src', imagesrc);
+    this.icon.setAttribute('alt', type);
+
+    this.window.style.zIndex=NS.Window.zIndex;
+    this.window.style.marginTop=winMarginTop+'px';
+    this.window.style.marginLeft=winMarginLeft+'px';
+    
+    this.close.addEventListener('click', function(e){
+        e.preventDefault();
+        var throwAwayNode = this.window.parentNode.removeChild(this.window); //https://developer.mozilla.org/en-US/docs/Web/API/Node.removeChild
+    }.bind(this));
+    
+    this.window.addEventListener('click', function(e){
+        e.preventDefault();
+        NS.Window.prototype.focus();
+        this.window.style.zIndex=NS.Window.zIndex;
+    }.bind(this));
+    
+    switch (type) {
+        case 'RSS':
+            var rss = new NS.Rss(this);
+            rss.openRss();
+            break;
         
-    
-
-    windowArea = document.getElementById('windowArea');
-
-    newWindow = document.createElement('div');
-    newWindow.setAttribute('class', 'newWindow');
-    newWindow.setAttribute('id', windowId);
-
-    windowHead = document.createElement('div');
-    windowHead.setAttribute('class', 'windowHead');
-    
-    icon = document.createElement('img');
-    icon.setAttribute('src', imagesrc);
-    icon.setAttribute('class', 'windowIcon');
-    
-    h1 = document.createElement('h1');
-    h1.setAttribute('class', 'windowTitle');
-    title = document.createTextNode(type);
-    
-    close = document.createElement('img');
-    //close.setAttribute('src', '');
-    close.setAttribute('class', 'close');
-    close.setAttribute('alt', 'X');
-    //https://developer.mozilla.org/en-US/docs/Web/API/Node.removeChild
-    close.addEventListener('click', function(){
-        //newWindow.setAttribute('class', 'hidden');
-        //e.preventDefault();
-        var windowToClose = document.getElementById(windowId);
-        var throwawayNode = windowArea.removeChild(windowToClose);
-    });
-    
-    this.windowBody = document.createElement('div'); //this gör det publikt
-    this.windowBody.setAttribute('class', 'windowBody');
-    
-    load = document.createElement('div');
-    load.setAttribute('class', 'load');
-    //load.setAttribute('class', 'hidden');
-    
-    windowFooter = document.createElement('div');
-    windowFooter.setAttribute('class', 'windowFooter');
-    
-    h1.appendChild(title);
-    windowHead.appendChild(icon);
-    windowHead.appendChild(title);
-    windowHead.appendChild(close);
-    windowFooter.appendChild(load);
-    newWindow.appendChild(windowHead);
-    newWindow.appendChild(this.windowBody);
-    newWindow.appendChild(windowFooter);
-    windowArea.appendChild(newWindow);
-    
-    if (type = 'Gallery'){
-        var gallery = new Gallery(this);
-        gallery.openGallery();
+        case 'Memory':
+            var memory = new NS.Memory(this);
+            memory.openMemory();
+            break;
+        
+        default:
+            var gallery = new NS.Gallery(this);
+            gallery.openGallery();
     }
 };

@@ -18,16 +18,22 @@ var makePerson = function(persArr){
     //högsta åldern, medelålder och skriv ut samtliga personers namn
     persons = {
         minAge: function (){
-            return Math.min.apply(Math,persArr.map(function(persArr){return persArr.age}));
+            return Math.min.apply(Math,persArr.map(function(persArr){
+                return persArr.age}));
         },
         maxAge: function (){
-            return Math.max.apply(Math,persArr.map(function(persArr){return persArr.age}));
+            return Math.max.apply(Math,persArr.map(function(persArr){
+                return persArr.age}));
         },
         averageAge: function (){
-            return Math.round(persArr.map(function(persArr){return persArr.age}).reduce(function(a, b){return a+b})/persArr.length);
+            return Math.round(persArr.map(function(persArr){
+                return persArr.age}).reduce(function(a, b){
+                    return a+b})/persArr.length);
         },
         names: function(){
-            return persArr.map(function(persArr){return persArr.name}).sort(function(a,b){return a.localeCompare(b)}).join(", ").toString();
+            return persArr.map(function(persArr){
+                return persArr.name}).sort(function(a,b){
+                    return a.localeCompare(b)}).join(", ").toString();
         }
     };
     //console.log(persons.names());

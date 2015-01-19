@@ -3,16 +3,35 @@
 <head>
 	<meta charset='UTF-8' />
  	<title>Dashboard</title>
- 	<link rel='stylesheet' href='style/style.css'>
- 	<script src='script/Desktop.js'></script>
- 	<script src='script/Window.js'></script>
- 	<script src='script/Gallery.js'></script>
- 	<script src='script/run.js'></script>
+ 	<link rel='stylesheet' href='style/desktop.css'>
+ 	<link rel='stylesheet' href='style/memory.css'>
 </head>
     <body>
+        
         <div id="wrapper">
-            <div id='windowArea'></div>
-            <div id="menu"></div>
+            <template id='windowTemplate' class="hidden"> <!--för att det ska fungera med template i IE-->
+                <div class='window'>
+                    <div class='windowHeader'>
+                        <img class="windowIcon" />
+                        <p class='windowTitle'></p>
+                        <a href='#' class="close">
+                            <img src="images/close.png" alt="close" />
+                        </a>
+                    </div>
+                    <div class='windowBody'></div>
+                    <div class='windowFooter'>
+                        <div class="load"></div>
+                    </div>
+                </div>
+            </template>
+            <div id='menu'></div>
         </div>
+        <script src='script/Desktop.js'></script>
+     	<script src='script/Window.js'></script>
+     	<script src='script/Gallery.js'></script>
+     	<script src='script/Rss.js'></script>
+     	<script src='script/random.js'></script>
+     	<script src='script/Memory.js'></script>
+     	<script src='script/run.js'></script>
     </body>
 </html>

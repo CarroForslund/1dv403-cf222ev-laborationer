@@ -1,24 +1,47 @@
 'use strict';
-function Desktop(){
+var NS = NS || {};
+NS.Desktop = function(){
    this.content = document.querySelector('#wrapper');//public
-}
+};
 
-Desktop.prototype.addApp = function(type, imagesrc){
-    var img, a, windowId;
-    windowId = 0;
+NS.Desktop.prototype.addApp = function(type, imagesrc){
+    var img = document.createElement('img');
+    var a = document.createElement('a');
+    var menu = document.querySelector('#menu');
+    var zIndex = 0;
+    var winMarginTop;
+    var winMarginLeft;
     
-    img = document.createElement('img');
+    switch (type){
+        case 'RSS':
+            winMarginTop = 30;
+            winMarginLeft = 150;
+            break;
+        case 'Memory':
+            winMarginTop = 30;
+            winMarginLeft = 240;
+            break;
+        default:
+            winMarginTop = 30;
+            winMarginLeft = 30;
+    }
+    
     img.setAttribute('src', imagesrc);
-    a = document.createElement('a');
     a.setAttribute('href', '#');
     a.setAttribute('class', 'appLink');
-    document.querySelector('#menu').appendChild(a);
+    
+    menu.appendChild(a);
     a.appendChild(img);
+    
+    //Skrivbordsytans aka webbläsarfönstrets bredd och höjd
+    this.desktopWidth = this.content.clientWidth;
+    this.desktopHeight = this.content.clientHeight;
     
     a.addEventListener('click', function(e){
         e.preventDefault();
-        windowId = windowId += 1;
-        var win = new Window();
-        win.openWindow(type, imagesrc, windowId);
-    });
+        winMarginLeft += 10;
+        winMarginTop += 10;
+        var win = new NS.Window(this);
+        win.openWindow(type, imagesrc, zIndex, winMarginTop, winMarginLeft);
+    }.bind(this));
 };
