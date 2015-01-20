@@ -9,7 +9,7 @@ NS.Window = function(desktop) {
     if(tmp){
          windowTemplate = template.querySelector(".window");
     }else{
-         windowTemplate = template.content.querySelector(".window"); //För att hämta innehållet måste jag använda content
+         windowTemplate = template.content.querySelector(".window");
     }
     
     this.window = windowTemplate.cloneNode(true); //Klonar window
@@ -41,11 +41,14 @@ NS.Window.prototype.openWindow = function(type, imagesrc, zIndex, winMarginTop, 
     this.window.style.marginTop=winMarginTop+'px';
     this.window.style.marginLeft=winMarginLeft+'px';
     
+    //Stäng fönstret och kasta bort
     this.close.addEventListener('click', function(e){
         e.preventDefault();
-        var throwAwayNode = this.window.parentNode.removeChild(this.window); //https://developer.mozilla.org/en-US/docs/Web/API/Node.removeChild
+        this.window.parentNode.removeChild(this.window); //kunde ha lagt "var throwAwayNode =" innan
+        clearInterval(this.rssUpdate);
     }.bind(this));
     
+    //Lyft fram fönster i fokus när man klickar på det
     this.window.addEventListener('click', function(e){
         e.preventDefault();
         NS.Window.prototype.focus();
@@ -54,8 +57,10 @@ NS.Window.prototype.openWindow = function(type, imagesrc, zIndex, winMarginTop, 
     
     switch (type) {
         case 'RSS':
-            var rss = new NS.Rss(this);
-            rss.openRss();
+            var rss = new NS.RSS(this);
+            this.rssUpdate = setInterval(function(){
+                rss.openRSS();
+            }, 3000);
             break;
         
         case 'Memory':

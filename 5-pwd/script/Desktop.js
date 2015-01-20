@@ -33,10 +33,11 @@ NS.Desktop.prototype.addApp = function(type, imagesrc){
     menu.appendChild(a);
     a.appendChild(img);
     
-    //Skrivbordsytans aka webbläsarfönstrets bredd och höjd
+    // //Skrivbordsytans aka webbläsarfönstrets bredd och höjd
     this.desktopWidth = this.content.clientWidth;
     this.desktopHeight = this.content.clientHeight;
     
+    //Öppna nytt fönster när man klickar på app-ikonen
     a.addEventListener('click', function(e){
         e.preventDefault();
         winMarginLeft += 10;

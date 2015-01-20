@@ -1,35 +1,32 @@
 'use strict';
 var NS = NS || {};
-NS.Rss = function(window) {
+NS.RSS = function(window) {
     this.content = window.content;
     this.footer = window.footer;
-}
+    this.load = this.footer.querySelector('.load');
+};
 
-// setInterval(function(){
-    
-// }, 3000);
-
-NS.Rss.prototype.openRss = function(){
-    console.log('uppdatering check!');
+NS.RSS.prototype.openRSS = function(){
+    var windowBody = this.content;
+    //console.log(this.load);
+    console.log('uppdatering av rss - check!');
     var url = 'http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url='+escape('http://www.dn.se/m/rss/senaste-nytt');
     var xhr = new XMLHttpRequest();
     
     xhr.onreadystatechange = function(){
-
         if (xhr.readyState === 4){
             if (xhr.status === 200){
                 var rssFeed = xhr.responseText;
-                var windowBody = this.content;
-                
                 windowBody.innerHTML= rssFeed;
             }
             else {
                 console.log('Läsfel, status: '+xhr.status);
             }
-            var load = this.footer.querySelector('.load');
-            load.setAttribute('class', 'hidden');
+            this.load.setAttribute('class', 'hidden');
         }
-    }.bind(this); // gör att jag kan komma åt this uppifrån
-    xhr.open("GET", url, true); //Synkront = false (webbapplikation) | Asynkront = true (webbsida)
+    }.bind(this);
+    
+    xhr.open("GET", url, true);
     xhr.send(null);
+
 };

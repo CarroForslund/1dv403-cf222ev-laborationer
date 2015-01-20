@@ -3,13 +3,10 @@ var NS = NS || {};
 NS.Memory = function(window) {
     this.content = window.content;
     this.footer = window.footer;
-    //Memory.prototype.openMemory();
-    //var windowB = this.content;
 };
 
 NS.Memory.prototype.openMemory = function(){
     var windowBody = this.content;
-    console.log(this);
     var counter, load;
     var firstClick = null;
     var secondClick = null;
